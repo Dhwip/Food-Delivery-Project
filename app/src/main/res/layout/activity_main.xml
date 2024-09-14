@@ -26,22 +26,74 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:layout_marginBottom="50dp"
         android:text="Eat Healthy, Stay Health"
         android:textColor="@color/black"
         android:textSize="20sp"/>
 
     <Button
-        android:id="@+id/button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Sign In"
+        android:id="@+id/ClientSignIn"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:text="Client Sign In"
+        android:theme="@style/ButtonTheme"
         android:textAllCaps="false"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:background="#00BCD4"
-        android:backgroundTint="#00BCD4"
-        app:cornerRadius="30dp"/>
+        android:backgroundTint="@color/colorPrimary"
+        app:cornerRadius="15dp"/>
+
+    <Button
+        android:id="@+id/RestSignIn"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:text="Restaurant Sign In"
+        android:theme="@style/ButtonTheme"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:backgroundTint="@color/yellow"
+        app:cornerRadius="15dp"/>
+
+    <Button
+        android:id="@+id/RiderSignIn"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:text="Rider Sign In"
+        android:theme="@style/ButtonTheme"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:backgroundTint="@color/green"
+        app:cornerRadius="15dp"/>
+
+    <Button
+        android:id="@+id/AdminSignIn"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:text="Admin Sign In"
+        android:theme="@style/ButtonTheme"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:backgroundTint="@color/red"
+        app:cornerRadius="15dp"/>
 
 
 </LinearLayout>
