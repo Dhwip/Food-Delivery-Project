@@ -13,6 +13,15 @@
         android:theme="@style/Theme.FoodDeliveryApp"
         tools:targetApi="31">
         <activity
+            android:name=".RiderSignUpActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ClientSignUpActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RestaurantSignUpActivity"
+            android:exported="false" />
+        <activity
             android:name=".RiderSignInActivity"
             android:exported="true" />
         <activity

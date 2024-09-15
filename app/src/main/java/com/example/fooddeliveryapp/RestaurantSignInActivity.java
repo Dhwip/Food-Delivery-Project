@@ -1,5 +1,6 @@
 package com.example.fooddeliveryapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -14,6 +15,7 @@ public class RestaurantSignInActivity extends AppCompatActivity {
     private Button signInButton;
     private TextView forgotPasswordTextView;
     private TextView signUpTextView;
+    private DatabaseHelper databaseHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +27,7 @@ public class RestaurantSignInActivity extends AppCompatActivity {
         signInButton = findViewById(R.id.signInButton);
         forgotPasswordTextView = findViewById(R.id.forgotPasswordTextView);
         signUpTextView = findViewById(R.id.signUpTextView);
+        databaseHelper = new DatabaseHelper(this);
 
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -32,10 +35,19 @@ public class RestaurantSignInActivity extends AppCompatActivity {
                 String emailInput = email.getText().toString();
                 String passwordInput = password.getText().toString();
 
-                // TODO: Authenticate the admin sign-in
-                Toast.makeText(RestaurantSignInActivity.this, "Restaurant Signed In", Toast.LENGTH_SHORT).show();
+                if (emailInput.isEmpty() || passwordInput.isEmpty()) {
+                    Toast.makeText(RestaurantSignInActivity.this, "Please enter all fields", Toast.LENGTH_SHORT).show();
+                } else {
+                    boolean isValidUser = databaseHelper.authenticateUser("Restaurant",emailInput, passwordInput);
+                    if (isValidUser) {
+                        Toast.makeText(RestaurantSignInActivity.this, "Sign In Successful", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(RestaurantSignInActivity.this, "Sign In Failed: Invalid Email or Password", Toast.LENGTH_SHORT).show();
+                    }
+                }
             }
         });
+
         forgotPasswordTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -46,7 +58,8 @@ public class RestaurantSignInActivity extends AppCompatActivity {
         signUpTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(RestaurantSignInActivity.this, "Sign Up clicked", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(RestaurantSignInActivity.this, RestaurantSignUpActivity.class);
+                startActivity(intent);
             }
         });
     }

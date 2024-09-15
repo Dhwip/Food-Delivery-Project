@@ -1,5 +1,6 @@
 package com.example.fooddeliveryapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -15,6 +16,7 @@ public class ClientSignInActivity extends AppCompatActivity {
     private Button signInButton;
     private TextView forgotPasswordTextView;
     private TextView signUpTextView;
+    private DatabaseHelper databaseHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,17 +28,23 @@ public class ClientSignInActivity extends AppCompatActivity {
         signInButton = findViewById(R.id.signInButton);
         forgotPasswordTextView = findViewById(R.id.forgotPasswordTextView);
         signUpTextView = findViewById(R.id.signUpTextView);
+        databaseHelper = new DatabaseHelper(this);
 
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String email = emailEditText.getText().toString();
-                String password = passwordEditText.getText().toString();
+                String emailInput = emailEditText.getText().toString();
+                String passwordInput = passwordEditText.getText().toString();
 
-                if (email.isEmpty() || password.isEmpty()) {
+                if (emailInput.isEmpty() || passwordInput.isEmpty()) {
                     Toast.makeText(ClientSignInActivity.this, "Please enter all fields", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(ClientSignInActivity.this, "Signed in as Client", Toast.LENGTH_SHORT).show();
+                    boolean isValidUser = databaseHelper.authenticateUser("Client",emailInput, passwordInput);
+                    if (isValidUser) {
+                        Toast.makeText(ClientSignInActivity.this, "Sign In Successful", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(ClientSignInActivity.this, "Sign In Failed: Invalid Email or Password", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });
@@ -51,7 +59,8 @@ public class ClientSignInActivity extends AppCompatActivity {
         signUpTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(ClientSignInActivity.this, "Sign Up clicked", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(ClientSignInActivity.this,ClientSignUpActivity.class);
+                startActivity(intent);
             }
         });
     }
