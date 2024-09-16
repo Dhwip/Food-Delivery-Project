@@ -41,6 +41,8 @@ public class ClientSignInActivity extends AppCompatActivity {
                 } else {
                     boolean isValidUser = databaseHelper.authenticateUser("Client",emailInput, passwordInput);
                     if (isValidUser) {
+                        Intent intent = new Intent(ClientSignInActivity.this,HomePageActivity.class);
+                        startActivity(intent);
                         Toast.makeText(ClientSignInActivity.this, "Sign In Successful", Toast.LENGTH_SHORT).show();
                     } else {
                         Toast.makeText(ClientSignInActivity.this, "Sign In Failed: Invalid Email or Password", Toast.LENGTH_SHORT).show();
