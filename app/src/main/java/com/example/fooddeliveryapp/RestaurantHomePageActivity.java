@@ -5,16 +5,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-
-import androidx.activity.EdgeToEdge;
+import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 public class RestaurantHomePageActivity extends AppCompatActivity {
 
-    private Button btnAddMenu, btnViewMenu,logout;
+    public Button btnAddMenu, btnViewMenu,logout,pendingOrders;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -25,21 +21,17 @@ public class RestaurantHomePageActivity extends AppCompatActivity {
         btnAddMenu = findViewById(R.id.btnAddMenu);
         btnViewMenu = findViewById(R.id.btnViewMenu);
         logout = findViewById(R.id.logout);
+        pendingOrders = findViewById(R.id.Orders);
 
-        btnAddMenu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(RestaurantHomePageActivity.this, AddMenuActivity.class);
-
-                startActivity(intent);
-            }
+        btnAddMenu.setOnClickListener(v -> {
+            Intent intent = new Intent(RestaurantHomePageActivity.this, AddMenuActivity.class);
+            startActivity(intent);
         });
 
         btnViewMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(RestaurantHomePageActivity.this, MenuListActivity.class);
-//                intent.putExtra("restaurantName", "Vedant");
                 startActivity(intent);
             }
         });
@@ -49,6 +41,12 @@ public class RestaurantHomePageActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(RestaurantHomePageActivity.this,MainActivity.class);
                 startActivity(intent);
+            }
+        });
+        pendingOrders.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(RestaurantHomePageActivity.this,"Clicked Pending Orders",Toast.LENGTH_SHORT).show();
             }
         });
     }
