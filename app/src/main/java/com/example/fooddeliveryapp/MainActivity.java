@@ -12,7 +12,7 @@ public class MainActivity extends AppCompatActivity {
     private Button clientSignInButton;
     private Button restaurantSignInButton;
     private Button riderSignInButton;
-    private Button adminSignInButton;
+//    private Button adminSignInButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         clientSignInButton = findViewById(R.id.ClientSignIn);
         restaurantSignInButton = findViewById(R.id.RestSignIn);
         riderSignInButton = findViewById(R.id.RiderSignIn);
-        adminSignInButton = findViewById(R.id.AdminSignIn);
+//        adminSignInButton = findViewById(R.id.AdminSignIn);
 
         clientSignInButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,13 +51,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        adminSignInButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(MainActivity.this,"Clicked Admin",Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(MainActivity.this, AdminSignInActivity.class);
-                startActivity(intent);
-            }
-        });
+//        adminSignInButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Toast.makeText(MainActivity.this,"Clicked Admin",Toast.LENGTH_SHORT).show();
+//                Intent intent = new Intent(MainActivity.this, AdminSignInActivity.class);
+//                startActivity(intent);
+//            }
+//        });
     }
 }

@@ -17,6 +17,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String TABLE_RIDER = "Rider";
     private static final String TABLE_CLIENT = "Client";
     private static final String TABLE_ADMIN = "Admin";
+    private static final String TABLE_MENU = "Menu";
+    private static final String TABLE_ORDERS = "Orders";
+
+    // Menu Table Column Names
+    private static final String COL_MENU_ID = "MenuID";
+    private static final String COL_RESTAURANT_NAME = "RestaurantName";
+    private static final String COL_FOOD_NAME = "FoodName";
+    private static final String COL_FOOD_PRICE = "FoodPrice";
+
+    private static final String COL_ORDER_ID = "OrderID";
+    private static final String COL_ORDER_DETAILS = "OrderDetails";
+    private static final String COL_CLIENT_ID = "ClientID";
+    private static final String COL_RIDER_ID = "RiderID";
 
     // Common Column Names
     private static final String COL_ID = "ID";
@@ -63,11 +76,28 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + COL_EMAIL + " TEXT, "
                 + COL_PASSWORD + " TEXT)";
 
+        String CREATE_TABLE_MENU = "CREATE TABLE " + TABLE_MENU + " ("
+                + COL_MENU_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + COL_RESTAURANT_NAME + " TEXT, "  // Store restaurant name
+                + COL_FOOD_NAME + " TEXT, "
+                + COL_FOOD_PRICE + " REAL)";
+
+        String CREATE_TABLE_ORDERS = "CREATE TABLE " + TABLE_ORDERS + " ("
+                + COL_ORDER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + COL_ORDER_DETAILS + " TEXT, "
+                + COL_CLIENT_ID + " INTEGER, "
+                + COL_RIDER_ID + " INTEGER, "  // Initially NULL when the order is not assigned
+                + "FOREIGN KEY (" + COL_CLIENT_ID + ") REFERENCES " + TABLE_CLIENT + "(" + COL_ID + "), "
+                + "FOREIGN KEY (" + COL_RIDER_ID + ") REFERENCES " + TABLE_RIDER + "(" + COL_ID + "))";
+
+
+
         // Execute SQL to create tables
         db.execSQL(CREATE_TABLE_RESTAURANT);
         db.execSQL(CREATE_TABLE_RIDER);
         db.execSQL(CREATE_TABLE_CLIENT);
         db.execSQL(CREATE_TABLE_ADMIN);
+        db.execSQL(CREATE_TABLE_MENU);
     }
 
     // Called when the database needs to be upgraded
@@ -78,8 +108,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_RIDER);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_CLIENT);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_ADMIN);
-
-        // Recreate tables
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_MENU);
         onCreate(db);
     }
 
@@ -91,6 +120,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(COL_EMAIL, email);
         values.put(COL_PASSWORD, password);
         long result = db.insert(TABLE_RESTAURANT, null, values);
+        return result != -1; // Return true if insertion was successful
+    }
+    public boolean insertMenuItem(String restaurantName, String foodName, double foodPrice) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COL_RESTAURANT_NAME, restaurantName);
+        values.put(COL_FOOD_NAME, foodName);
+        values.put(COL_FOOD_PRICE, foodPrice);
+        long result = db.insert(TABLE_MENU, null, values);
         return result != -1; // Return true if insertion was successful
     }
 
@@ -143,6 +181,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         return db.rawQuery("SELECT * FROM " + TABLE_RESTAURANT, null);
     }
+    public Cursor getMenuItemsByRestaurant(String restaurantName) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        return db.rawQuery("SELECT * FROM " + TABLE_MENU + " WHERE " + COL_RESTAURANT_NAME + " = ?",
+                new String[]{restaurantName});
+    }
 
     // Fetch all riders
     public Cursor getAllRiders() {
@@ -150,15 +193,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return db.rawQuery("SELECT * FROM " + TABLE_RIDER, null);
     }
 
-    // Fetch all clients
-    public Cursor getAllClients() {
+    public Cursor getAvailableOrders() {
         SQLiteDatabase db = this.getReadableDatabase();
-        return db.rawQuery("SELECT * FROM " + TABLE_CLIENT, null);
+        String query = "SELECT * FROM Orders WHERE RiderID IS NULL";  // Assuming RiderID is NULL when the order is not accepted
+        return db.rawQuery(query, null);
     }
 
-    // Fetch all admins
-    public Cursor getAllAdmins() {
-        SQLiteDatabase db = this.getReadableDatabase();
-        return db.rawQuery("SELECT * FROM " + TABLE_ADMIN, null);
+    public boolean acceptOrder(int orderId, int riderId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COL_RIDER_ID, riderId);  // Assign the rider's ID to this order
+
+        int result = db.update(TABLE_ORDERS, values, COL_ORDER_ID + " = ?", new String[]{String.valueOf(orderId)});
+        return result > 0;  // Return true if the update was successful
     }
+
 }

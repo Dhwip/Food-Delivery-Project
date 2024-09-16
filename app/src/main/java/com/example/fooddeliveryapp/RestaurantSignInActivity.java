@@ -40,6 +40,8 @@ public class RestaurantSignInActivity extends AppCompatActivity {
                 } else {
                     boolean isValidUser = databaseHelper.authenticateUser("Restaurant",emailInput, passwordInput);
                     if (isValidUser) {
+                        Intent intent = new Intent(RestaurantSignInActivity.this,RestaurantHomePageActivity.class);
+                        startActivity(intent);
                         Toast.makeText(RestaurantSignInActivity.this, "Sign In Successful", Toast.LENGTH_SHORT).show();
                     } else {
                         Toast.makeText(RestaurantSignInActivity.this, "Sign In Failed: Invalid Email or Password", Toast.LENGTH_SHORT).show();

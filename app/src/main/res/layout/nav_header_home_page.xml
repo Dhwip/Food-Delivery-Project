@@ -18,21 +18,23 @@
         android:layout_height="90dp"
         android:contentDescription="@string/nav_header_desc"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
+        android:layout_marginLeft="5dp"
         app:srcCompat="@drawable/bg1" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:textStyle="bold"
-        android:layout_marginLeft="11dp"
         android:text="@string/user"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/textView"
+        android:layout_marginLeft="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:text="shahdhwip48@gmail.com" />
+        android:text="shahdhwip48@gmail.com"
+        android:textStyle="bold" />
 </LinearLayout>

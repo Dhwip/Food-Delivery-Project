@@ -79,21 +79,21 @@
         android:backgroundTint="@color/green"
         app:cornerRadius="15dp"/>
 
-    <Button
-        android:id="@+id/AdminSignIn"
-        android:layout_width="300dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:text="Admin Sign In"
-        android:theme="@style/ButtonTheme"
-        android:textAllCaps="false"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:backgroundTint="@color/red"
-        app:cornerRadius="15dp"/>
+<!--    <Button-->
+<!--        android:id="@+id/AdminSignIn"-->
+<!--        android:layout_width="300dp"-->
+<!--        android:layout_height="60dp"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:layout_marginLeft="30dp"-->
+<!--        android:layout_marginRight="30dp"-->
+<!--        android:text="Admin Sign In"-->
+<!--        android:theme="@style/ButtonTheme"-->
+<!--        android:textAllCaps="false"-->
+<!--        android:textColor="@color/black"-->
+<!--        android:textSize="20sp"-->
+<!--        android:textStyle="bold"-->
+<!--        android:backgroundTint="@color/red"-->
+<!--        app:cornerRadius="15dp"/>-->
 
 
 </LinearLayout>
