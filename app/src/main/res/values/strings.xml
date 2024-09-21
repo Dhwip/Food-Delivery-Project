@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Food Delivery App</string>
     <string name="login">d\n</string>
-    <string name="Foodelivery">d\n</string>
+    <string name="Foodelivery">Sizzling\n</string>
     <string name="title_activity_home_page">HomePageActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>

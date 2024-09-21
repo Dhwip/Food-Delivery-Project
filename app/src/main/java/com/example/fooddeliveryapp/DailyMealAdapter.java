@@ -6,16 +6,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import java.util.ArrayList;
 
-public class HomeVerAdapter extends RecyclerView.Adapter<HomeVerAdapter.ViewHolder>  {
+import java.util.List;
+
+public class DailyMealAdapter extends RecyclerView.Adapter<DailyMealAdapter.ViewHolder> {
 
     Context context;
-    ArrayList<HomeVerModel> list;
+    List<DailyMealModel> list;
 
-    public HomeVerAdapter(Context context, ArrayList<HomeVerModel> list) {
+    public DailyMealAdapter(Context context, List<DailyMealModel> list) {
         this.context = context;
         this.list = list;
     }
@@ -23,16 +25,15 @@ public class HomeVerAdapter extends RecyclerView.Adapter<HomeVerAdapter.ViewHold
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.home_vertical_item, parent, false));
+        return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.daily_meal_item,parent,false));
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.imageView.setImageResource(list.get(position).getImage());
         holder.name.setText(list.get(position).getName());
-        holder.timing.setText(list.get(position).getTiming());
-        holder.rating.setText(list.get(position).getRating());
-        holder.price.setText(list.get(position).getPrices());
+        holder.description.setText(list.get(position).getDescription());
+        holder.discount.setText(list.get(position).getDiscount());
     }
 
     @Override
@@ -40,16 +41,17 @@ public class HomeVerAdapter extends RecyclerView.Adapter<HomeVerAdapter.ViewHold
         return list.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder {
+
         ImageView imageView;
-        TextView name,timing,rating,price;
+        TextView name,description,discount;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            imageView = itemView.findViewById(R.id.ver_img);
-            name = itemView.findViewById(R.id.name);
-            timing = itemView.findViewById(R.id.timing);
-            rating = itemView.findViewById(R.id.rating);
-            price = itemView.findViewById(R.id.price);
+            imageView = itemView.findViewById(R.id.daily_meal_img);
+            name = itemView.findViewById(R.id.dinner);
+            description = itemView.findViewById(R.id.description);
+            discount = itemView.findViewById(R.id.discount);
+
         }
     }
 }

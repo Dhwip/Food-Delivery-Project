@@ -3,16 +3,10 @@ package com.example.fooddeliveryapp;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 public class RiderSignUpActivity extends AppCompatActivity {
     private EditText email, password, confirmPassword,name,vehicle;
@@ -33,28 +27,25 @@ public class RiderSignUpActivity extends AppCompatActivity {
 
         databaseHelper = new DatabaseHelper(this);
 
-        signUpButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String nameInput = name.getText().toString();
-                String emailInput = email.getText().toString();
-                String passwordInput = password.getText().toString();
-                String confirmPasswordInput = confirmPassword.getText().toString();
-                String vehicleInput = vehicle.getText().toString();
+        signUpButton.setOnClickListener(v -> {
+            String nameInput = name.getText().toString();
+            String emailInput = email.getText().toString();
+            String passwordInput = password.getText().toString();
+            String confirmPasswordInput = confirmPassword.getText().toString();
+            String vehicleInput = vehicle.getText().toString();
 
-                if (emailInput.isEmpty() || passwordInput.isEmpty() || confirmPasswordInput.isEmpty()||nameInput.isEmpty()) {
-                    Toast.makeText(RiderSignUpActivity.this, "All fields are required", Toast.LENGTH_SHORT).show();
-                } else if (!passwordInput.equals(confirmPasswordInput)) {
-                    Toast.makeText(RiderSignUpActivity.this, "Passwords do not match", Toast.LENGTH_SHORT).show();
+            if (emailInput.isEmpty() || passwordInput.isEmpty() || confirmPasswordInput.isEmpty()||nameInput.isEmpty()) {
+                Toast.makeText(RiderSignUpActivity.this, "All fields are required", Toast.LENGTH_SHORT).show();
+            } else if (!passwordInput.equals(confirmPasswordInput)) {
+                Toast.makeText(RiderSignUpActivity.this, "Passwords do not match", Toast.LENGTH_SHORT).show();
+            } else {
+                boolean isInserted = databaseHelper.insertRider(nameInput,emailInput, passwordInput,vehicleInput);
+                if (isInserted) {
+                    Toast.makeText(RiderSignUpActivity.this, "Sign Up Successful", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(RiderSignUpActivity.this, RiderSignInActivity.class);
+                    startActivity(intent);
                 } else {
-                    boolean isInserted = databaseHelper.insertRider(nameInput,emailInput, passwordInput,vehicleInput);
-                    if (isInserted) {
-                        Toast.makeText(RiderSignUpActivity.this, "Sign Up Successful", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(RiderSignUpActivity.this, RiderSignInActivity.class);
-                        startActivity(intent);
-                    } else {
-                        Toast.makeText(RiderSignUpActivity.this, "Sign Up Failed", Toast.LENGTH_SHORT).show();
-                    }
+                    Toast.makeText(RiderSignUpActivity.this, "Sign Up Failed", Toast.LENGTH_SHORT).show();
                 }
             }
         });

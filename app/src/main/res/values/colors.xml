@@ -11,4 +11,9 @@
     <color name="gray">#393d40</color>
     <color name="darkgray">#27282c</color>
     <color name="mediumgray">#262523</color>
+    <color name="tp">#FF9800</color>
+    <color name="nav_item_selected_text_color">#000000</color> <!-- Black for selected -->
+    <color name="nav_item_default_text_color">#757575</color> <!-- Gray for unselected -->
+
+
 </resources>
