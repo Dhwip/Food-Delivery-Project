@@ -12,7 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FoodDeliveryApp"
         tools:targetApi="31">
-
+        <activity
+            android:name=".DetailedDailyMealActivity"
+            android:exported="false" />
         <activity
             android:name=".MenuListActivity"
             android:exported="false" />
@@ -47,9 +49,9 @@
             android:exported="true" />
         <activity
             android:name=".MainActivity"
+            android:exported="true"
             android:label="@string/Foodelivery"
-            android:theme="@style/Theme.FoodDeliveryApp.NoActionBar"
-            android:exported="true">
+            android:theme="@style/Theme.FoodDeliveryApp.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
