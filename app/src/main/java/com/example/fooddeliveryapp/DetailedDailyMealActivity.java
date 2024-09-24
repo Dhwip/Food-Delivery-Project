@@ -1,5 +1,6 @@
 package com.example.fooddeliveryapp;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.widget.ImageView;
 
@@ -17,6 +18,7 @@ public class DetailedDailyMealActivity extends AppCompatActivity {
     DetailedDailyAdapter dailyAdapter;
     ImageView imageView;
 
+    @SuppressLint("NotifyDataSetChanged")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,9 +41,9 @@ public class DetailedDailyMealActivity extends AppCompatActivity {
         }
         if(type!=null && type.equalsIgnoreCase("sweet")){
             imageView.setImageResource(R.drawable.ice_cream);
-            detailedDailyModels.add(new DetailedDailyModel(R.drawable.fries,"Breakfast","description","4.5","80","10am to 11pm"));
-            detailedDailyModels.add(new DetailedDailyModel(R.drawable.ice_cream,"Breakfast","description","4.5","80","10am to 11pm"));
-            detailedDailyModels.add(new DetailedDailyModel(R.drawable.burger,"Breakfast","description","4.5","80","10am to 11pm"));
+            detailedDailyModels.add(new DetailedDailyModel(R.drawable.fries,"sweet","description","4.5","80","10am to 11pm"));
+            detailedDailyModels.add(new DetailedDailyModel(R.drawable.ice_cream,"sweet","description","4.5","80","10am to 11pm"));
+            detailedDailyModels.add(new DetailedDailyModel(R.drawable.burger,"sweet","description","4.5","80","10am to 11pm"));
             dailyAdapter.notifyDataSetChanged();
         }
 
