@@ -191,5 +191,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 //        int result = db.update(TABLE_ORDERS, values, COL_ORDER_ID + " = ?", new String[]{String.valueOf(orderId)});
 //        return result > 0;  // Return true if the update was successful
 //    }
+        public String getClientEmailById(int clientId) {
+    SQLiteDatabase db = this.getReadableDatabase();
+    String clientEmail = null;
 
+    // Query to get the client's email by their ID
+    Cursor cursor = db.rawQuery("SELECT " + COL_EMAIL + " FROM " + TABLE_CLIENT + " WHERE " + COL_ID + " = ?",
+            new String[]{String.valueOf(clientId)});
+
+    if (cursor.moveToFirst()) {
+        clientEmail = cursor.getString(0);  // Get the first column (which is the email)
+    }
+    cursor.close();
+    return clientEmail;
+}
 }
