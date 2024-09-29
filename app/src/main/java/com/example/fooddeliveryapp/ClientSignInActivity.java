@@ -58,7 +58,7 @@ public class ClientSignInActivity extends AppCompatActivity {
                         SharedPreferences.Editor editor = sharedPreferences.edit();
                         editor.putBoolean(IS_SIGNED_IN, true);
                         editor.putString("ClientEmail", emailInput);
-//                        editor.putString("UserType", "Client");
+                        editor.putString("UserType", "Client");
                         editor.apply();
 
                         Intent intent = new Intent(ClientSignInActivity.this, HomePageActivity.class);
