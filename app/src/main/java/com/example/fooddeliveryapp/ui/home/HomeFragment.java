@@ -5,10 +5,14 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.fooddeliveryapp.AddToCartListener;
 import com.example.fooddeliveryapp.HomeHorAdapter;
 import com.example.fooddeliveryapp.HomeHorModel;
 import com.example.fooddeliveryapp.HomeVerAdapter;
@@ -17,7 +21,7 @@ import com.example.fooddeliveryapp.R;
 import com.example.fooddeliveryapp.UpdateVerticalRec;
 import java.util.ArrayList;
 
-public class HomeFragment extends Fragment implements UpdateVerticalRec {
+public class HomeFragment extends Fragment implements UpdateVerticalRec, AddToCartListener {
 
     RecyclerView homeHorizontalRec, homeVerticalRec;
     ArrayList<HomeHorModel> homeHorModelList;
@@ -31,7 +35,6 @@ public class HomeFragment extends Fragment implements UpdateVerticalRec {
 
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
-        // Initialize horizontal RecyclerView
         homeHorizontalRec = root.findViewById(R.id.home_hor_rec);
         homeVerticalRec = root.findViewById(R.id.home_ver_rec);
         homeHorModelList = new ArrayList<>();
@@ -47,9 +50,8 @@ public class HomeFragment extends Fragment implements UpdateVerticalRec {
         homeHorizontalRec.setNestedScrollingEnabled(false);
         homeHorizontalRec.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false));
 
-        // Initialize vertical RecyclerView with empty data initially
         homeVerModelList = new ArrayList<>();
-        homeVerAdapter = new HomeVerAdapter(getActivity(), homeVerModelList);
+        homeVerAdapter = new HomeVerAdapter(getActivity(), homeVerModelList,this);//some changes to be done
         homeVerticalRec.setAdapter(homeVerAdapter);
         homeVerticalRec.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false));
 
@@ -62,5 +64,10 @@ public class HomeFragment extends Fragment implements UpdateVerticalRec {
         homeVerModelList.clear();
         homeVerModelList.addAll(list);
         homeVerAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onAddToCart(HomeVerModel item) {
+        Toast.makeText(getActivity(), item.getName() + " added to cart", Toast.LENGTH_SHORT).show();
     }
 }

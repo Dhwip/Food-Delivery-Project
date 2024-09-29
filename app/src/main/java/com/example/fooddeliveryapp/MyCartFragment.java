@@ -1,5 +1,6 @@
 package com.example.fooddeliveryapp;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,10 +12,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class MyCartFragment extends Fragment {
+public class MyCartFragment extends Fragment implements AddToCartListener {
 
     List<CartModel> list;
     CartAdapter cartAdapter;
@@ -27,15 +27,18 @@ public class MyCartFragment extends Fragment {
 
         recyclerView = view.findViewById(R.id.cart_rec);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        list = new ArrayList<>();
-        list.add(new CartModel(R.drawable.dinner,"order 1","30","4.6"));
-        list.add(new CartModel(R.drawable.lunch,"order 2","50","4.4"));
-        list.add(new CartModel(R.drawable.dinner,"order 3","90","4.8"));
-        list.add(new CartModel(R.drawable.dinner,"order 4","10","4.1"));
+        list = CartManager.getInstance().getCartItems();
         cartAdapter = new CartAdapter(list);
         recyclerView.setAdapter(cartAdapter);
 
         return view;
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    public void onAddToCart(HomeVerModel item) {
+        CartModel cartItem = new CartModel(item.getImage(), item.getName(), item.getPrices(), item.getRating());
+        list.add(cartItem);
+        cartAdapter.notifyDataSetChanged();
     }
 
     @Override

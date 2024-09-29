@@ -1,6 +1,7 @@
 package com.example.fooddeliveryapp;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -18,6 +19,11 @@ public class ClientSignInActivity extends AppCompatActivity {
     private TextView signUpTextView;
     private DatabaseHelper databaseHelper;
 
+    // Shared Preferences for storing sign-in status
+    private SharedPreferences sharedPreferences;
+    private static final String PREF_NAME = "SignInPref";
+    private static final String IS_SIGNED_IN = "IsSignedIn";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +36,14 @@ public class ClientSignInActivity extends AppCompatActivity {
         signUpTextView = findViewById(R.id.signUpTextView);
         databaseHelper = new DatabaseHelper(this);
 
+        sharedPreferences = getSharedPreferences(PREF_NAME, MODE_PRIVATE);
+
+        if (sharedPreferences.getBoolean(IS_SIGNED_IN, false)) {
+            Intent intent = new Intent(ClientSignInActivity.this, HomePageActivity.class);
+            startActivity(intent);
+            finish();
+        }
+
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -39,11 +53,18 @@ public class ClientSignInActivity extends AppCompatActivity {
                 if (emailInput.isEmpty() || passwordInput.isEmpty()) {
                     Toast.makeText(ClientSignInActivity.this, "Please enter all fields", Toast.LENGTH_SHORT).show();
                 } else {
-                    boolean isValidUser = databaseHelper.authenticateUser("Client",emailInput, passwordInput);
+                    boolean isValidUser = databaseHelper.authenticateUser("Client", emailInput, passwordInput);
                     if (isValidUser) {
-                        Intent intent = new Intent(ClientSignInActivity.this,HomePageActivity.class);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putBoolean(IS_SIGNED_IN, true);
+                        editor.putString("ClientEmail", emailInput);
+//                        editor.putString("UserType", "Client");
+                        editor.apply();
+
+                        Intent intent = new Intent(ClientSignInActivity.this, HomePageActivity.class);
                         startActivity(intent);
                         Toast.makeText(ClientSignInActivity.this, "Sign In Successful", Toast.LENGTH_SHORT).show();
+                        finish();
                     } else {
                         Toast.makeText(ClientSignInActivity.this, "Sign In Failed: Invalid Email or Password", Toast.LENGTH_SHORT).show();
                     }
@@ -61,10 +82,9 @@ public class ClientSignInActivity extends AppCompatActivity {
         signUpTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ClientSignInActivity.this,ClientSignUpActivity.class);
+                Intent intent = new Intent(ClientSignInActivity.this, ClientSignUpActivity.class);
                 startActivity(intent);
             }
         });
     }
 }
-

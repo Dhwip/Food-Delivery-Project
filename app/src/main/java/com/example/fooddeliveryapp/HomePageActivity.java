@@ -2,9 +2,8 @@ package com.example.fooddeliveryapp;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
@@ -42,8 +41,14 @@ public class HomePageActivity extends AppCompatActivity {
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SharedPreferences sharedPreferences = getSharedPreferences("SignInPref", MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.clear();
+                editor.apply();
+
                 Intent intent = new Intent(HomePageActivity.this, MainActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -51,7 +56,7 @@ public class HomePageActivity extends AppCompatActivity {
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
 
-        ColorStateList colorStateList = getResources().getColorStateList(R.color.nav_item_text_color);
+        @SuppressLint("UseCompatLoadingForColorStateLists") ColorStateList colorStateList = getResources().getColorStateList(R.color.nav_item_text_color);
         navigationView.setItemTextColor(colorStateList);
         navigationView.setItemIconTintList(colorStateList);
         navigationView.setItemBackgroundResource(R.drawable.nav_item_background);
@@ -71,9 +76,18 @@ public class HomePageActivity extends AppCompatActivity {
         View headerView = navigationView.getHeaderView(0);
         TextView emailTextView = headerView.findViewById(R.id.textView);
 
-        String clientEmail = dbHelper.getClientEmailById(2);
-        emailTextView.setText(clientEmail);
+        SharedPreferences sharedPreferences = getSharedPreferences("SignInPref", MODE_PRIVATE);
+        String clientEmail = sharedPreferences.getString("ClientEmail", "No Email Found");
+        String displayName;
+        if (clientEmail.contains("@")) {
+            displayName = clientEmail.split("@")[0];
+        } else {
+            displayName = clientEmail;
+        }
+        emailTextView.setText(displayName);
     }
+
+
 
 
     @Override
