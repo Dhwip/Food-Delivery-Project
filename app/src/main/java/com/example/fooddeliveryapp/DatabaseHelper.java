@@ -200,7 +200,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             new String[]{String.valueOf(clientId)});
 
     if (cursor.moveToFirst()) {
-        clientEmail = cursor.getString(0);  // Get the first column (which is the email)
+        clientEmail = cursor.getString(0);
     }
     cursor.close();
     return clientEmail;

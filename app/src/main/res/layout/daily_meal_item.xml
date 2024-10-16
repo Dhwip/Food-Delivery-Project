@@ -10,7 +10,9 @@
         android:id="@+id/daily_meal_img"
         android:layout_width="match_parent"
         android:layout_height="200dp"
+        android:src="@drawable/dinner"
         android:scaleType="centerCrop"
+        android:alpha=".75"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

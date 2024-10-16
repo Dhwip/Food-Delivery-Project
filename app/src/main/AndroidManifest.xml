@@ -7,22 +7,16 @@
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@drawable/icon"
-        android:label="@string/app_name"
+        android:label="@string/sizzling"
         android:roundIcon="@drawable/icon"
         android:supportsRtl="true"
         android:theme="@style/Theme.FoodDeliveryApp"
         tools:targetApi="31">
         <activity
+            android:name=".BillActivity"
+            android:exported="false" />
+        <activity
             android:name=".DetailedDailyMealActivity"
-            android:exported="false" />
-        <activity
-            android:name=".MenuListActivity"
-            android:exported="false" />
-        <activity
-            android:name=".AddMenuActivity"
-            android:exported="false" />
-        <activity
-            android:name=".RestaurantHomePageActivity"
             android:exported="false" />
         <activity
             android:name=".HomePageActivity"
@@ -30,23 +24,8 @@
             android:label="@string/title_activity_home_page"
             android:theme="@style/Theme.FoodDeliveryApp.NoActionBar" />
         <activity
-            android:name=".RiderSignUpActivity"
-            android:exported="false" />
-        <activity
             android:name=".ClientSignUpActivity"
             android:exported="false" />
-        <activity
-            android:name=".RestaurantSignUpActivity"
-            android:exported="false" />
-        <activity
-            android:name=".RiderSignInActivity"
-            android:exported="true" />
-        <activity
-            android:name=".AdminSignInActivity"
-            android:exported="true" />
-        <activity
-            android:name=".RestaurantSignInActivity"
-            android:exported="true" />
         <activity
             android:name=".MainActivity"
             android:exported="true"

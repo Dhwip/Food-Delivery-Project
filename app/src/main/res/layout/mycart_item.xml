@@ -45,6 +45,7 @@
                 android:layout_marginTop="4dp">
 
                 <ImageView
+                    android:id="@+id/stars"
                     android:layout_width="15dp"
                     android:layout_height="15dp"
                     android:src="@drawable/star"
@@ -57,34 +58,40 @@
                     android:id="@+id/detailed_ratings"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
                     android:text="5.0"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:layout_editor_absoluteX="37dp"
-                    tools:ignore="MissingConstraints" />
+                    app:layout_constraintStart_toEndOf="@id/stars"
+                    app:layout_constraintVertical_bias="0.444"
+                    tools:ignore="MissingConstraints"
+                    tools:layout_editor_absoluteX="42dp" />
 
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:src="@drawable/rupee"
+                    android:src="@drawable/rupee_icon"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/textView4"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/detailed_ratings"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/textView4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginEnd="16dp"
                     android:fontFamily="@font/amarante"
                     android:text="180"
                     android:textSize="22sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintHorizontal_bias="0.752"
+                    app:layout_constraintStart_toEndOf="@+id/detailed_ratings"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </LinearLayout>

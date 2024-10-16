@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.fooddeliveryapp.ui.home.HomeFragment;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.navigation.NavController;
@@ -26,7 +27,6 @@ public class HomePageActivity extends AppCompatActivity {
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityHomePageBinding binding;
     private Button logout;
-    private DatabaseHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,14 +35,13 @@ public class HomePageActivity extends AppCompatActivity {
         binding = ActivityHomePageBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        dbHelper = new DatabaseHelper(this);
-
         logout = findViewById(R.id.logout);
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 SharedPreferences sharedPreferences = getSharedPreferences("SignInPref", MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putBoolean("IS_SIGNED_IN", false);
                 editor.clear();
                 editor.apply();
 
@@ -86,8 +85,6 @@ public class HomePageActivity extends AppCompatActivity {
         }
         emailTextView.setText(displayName);
     }
-
-
 
 
     @Override

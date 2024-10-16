@@ -11,22 +11,21 @@ import androidx.appcompat.app.AppCompatActivity;
 public class MainActivity extends AppCompatActivity {
 
     private Button clientSignInButton;
-    private Button restaurantSignInButton;
-    private Button riderSignInButton;
     private SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
         sharedPreferences = getSharedPreferences("SignInPref", MODE_PRIVATE);
-        checkForSignedInUser();
+
+        if (isUserSignedIn()) {
+            navigateToHomePage();
+            return;
+        }
+        setContentView(R.layout.activity_main);
 
         clientSignInButton = findViewById(R.id.ClientSignIn);
-        restaurantSignInButton = findViewById(R.id.RestSignIn);
-        riderSignInButton = findViewById(R.id.RiderSignIn);
-
         clientSignInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -34,48 +33,13 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-        restaurantSignInButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, RestaurantSignInActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        riderSignInButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, RiderSignInActivity.class);
-                startActivity(intent);
-            }
-        });
     }
-
-    private void checkForSignedInUser() {
-        boolean isSignedIn = sharedPreferences.getBoolean("IS_SIGNED_IN", false);
-        String userType = sharedPreferences.getString("UserType", "");
-
-        if (isSignedIn) {
-            switch (userType) {
-                case "Client":
-                    Intent clientIntent = new Intent(MainActivity.this, HomePageActivity.class);
-                    startActivity(clientIntent);
-                    finish();
-                    break;
-                case "Restaurant":
-                    Intent restaurantIntent = new Intent(MainActivity.this, RestaurantHomePageActivity.class);
-                    startActivity(restaurantIntent);
-                    finish();
-                    break;
-                case "Rider":
-                    Intent riderIntent = new Intent(MainActivity.this, RiderHomePageActivity.class);
-                    startActivity(riderIntent);
-                    finish();
-                    break;
-                default:
-                    break;
-            }
-        }
+    private boolean isUserSignedIn() {
+        return sharedPreferences.getBoolean("IS_SIGNED_IN", false);
+    }
+    private void navigateToHomePage() {
+        Intent intent = new Intent(MainActivity.this, HomePageActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

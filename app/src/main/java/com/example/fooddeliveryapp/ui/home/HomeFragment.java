@@ -39,10 +39,10 @@ public class HomeFragment extends Fragment implements UpdateVerticalRec, AddToCa
         homeVerticalRec = root.findViewById(R.id.home_ver_rec);
         homeHorModelList = new ArrayList<>();
         homeHorModelList.add(new HomeHorModel(R.drawable.pizza, "Pizza"));
-        homeHorModelList.add(new HomeHorModel(R.drawable.burger, "Burger"));
-        homeHorModelList.add(new HomeHorModel(R.drawable.fries, "Fries"));
-        homeHorModelList.add(new HomeHorModel(R.drawable.ice_cream, "Ice Cream"));
-        homeHorModelList.add(new HomeHorModel(R.drawable.sandwich, "Sandwich"));
+        homeHorModelList.add(new HomeHorModel(R.drawable.burger4, "Burger"));
+        homeHorModelList.add(new HomeHorModel(R.drawable.fries_icon, "Fries"));
+        homeHorModelList.add(new HomeHorModel(R.drawable.icecream_icon, "Ice Cream"));
+        homeHorModelList.add(new HomeHorModel(R.drawable.sandwich_icon, "Sandwich"));
 
         homeHorAdapter = new HomeHorAdapter(this, getActivity(), homeHorModelList);
         homeHorizontalRec.setAdapter(homeHorAdapter);

@@ -1,17 +1,19 @@
 package com.example.fooddeliveryapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 
@@ -21,7 +23,6 @@ public class HomeVerAdapter extends RecyclerView.Adapter<HomeVerAdapter.ViewHold
     Context context;
     ArrayList<HomeVerModel> list;
     AddToCartListener addToCartListener;
-
 
     public HomeVerAdapter(Context context, ArrayList<HomeVerModel> list,AddToCartListener addToCartListener) {
         this.context = context;
@@ -62,7 +63,13 @@ public class HomeVerAdapter extends RecyclerView.Adapter<HomeVerAdapter.ViewHold
                         CartModel cartItem = new CartModel(currentItem.getImage(), currentItem.getName(), currentItem.getPrices(), currentItem.getRating());
                         CartManager.getInstance().addItem(cartItem);
                         addToCartListener.onAddToCart(currentItem);
-                        Toast.makeText(context,"Added to Cart",Toast.LENGTH_SHORT).show();
+                        Snackbar snackbar = Snackbar.make(holder.itemView, "Added to Cart", Snackbar.LENGTH_LONG);
+                        snackbar.setAction("Open Cart", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                            }
+                        });
+                        snackbar.show();
                         bottomSheetDialog.dismiss();
                     }
                 });

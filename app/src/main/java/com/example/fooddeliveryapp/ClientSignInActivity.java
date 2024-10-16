@@ -15,11 +15,9 @@ public class ClientSignInActivity extends AppCompatActivity {
     private EditText emailEditText;
     private EditText passwordEditText;
     private Button signInButton;
-    private TextView forgotPasswordTextView;
     private TextView signUpTextView;
     private DatabaseHelper databaseHelper;
 
-    // Shared Preferences for storing sign-in status
     private SharedPreferences sharedPreferences;
     private static final String PREF_NAME = "SignInPref";
     private static final String IS_SIGNED_IN = "IsSignedIn";
@@ -32,7 +30,6 @@ public class ClientSignInActivity extends AppCompatActivity {
         emailEditText = findViewById(R.id.emailEditText);
         passwordEditText = findViewById(R.id.passwordEditText);
         signInButton = findViewById(R.id.signInButton);
-        forgotPasswordTextView = findViewById(R.id.forgotPasswordTextView);
         signUpTextView = findViewById(R.id.signUpTextView);
         databaseHelper = new DatabaseHelper(this);
 
@@ -71,14 +68,6 @@ public class ClientSignInActivity extends AppCompatActivity {
                 }
             }
         });
-
-        forgotPasswordTextView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(ClientSignInActivity.this, "Forgot Password clicked", Toast.LENGTH_SHORT).show();
-            }
-        });
-
         signUpTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

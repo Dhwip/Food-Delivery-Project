@@ -19,7 +19,7 @@ public class HomeHorAdapter extends RecyclerView.Adapter<HomeHorAdapter.ViewHold
     Activity activity;
     ArrayList<HomeHorModel> list;
 
-    int row_index = 0; // Set the default to "Pizza" (position 0)
+    int row_index = 0;
 
     public HomeHorAdapter(UpdateVerticalRec updateVerticalRec, Activity activity, ArrayList<HomeHorModel> list) {
         this.updateVerticalRec = updateVerticalRec;
@@ -42,9 +42,9 @@ public class HomeHorAdapter extends RecyclerView.Adapter<HomeHorAdapter.ViewHold
         if (position == 0 && row_index == 0) {
             ArrayList<HomeVerModel> homeVerModels = new ArrayList<>();
             homeVerModels.add(new HomeVerModel(R.drawable.pizza1, "Pizza 1", "10:00-22:00", "89Rs", "4.9"));
-            homeVerModels.add(new HomeVerModel(R.drawable.pizza4, "Pizza 2", "10:00-22:00", "89Rs", "4.9"));
-            homeVerModels.add(new HomeVerModel(R.drawable.pizza2, "Pizza 3", "10:00-22:00", "89Rs", "4.9"));
-            homeVerModels.add(new HomeVerModel(R.drawable.pizza, "Pizza 4", "10:00-22:00", "89Rs", "4.9"));
+            homeVerModels.add(new HomeVerModel(R.drawable.pizza2, "Pizza 2", "10:00-22:00", "89Rs", "4.9"));
+            homeVerModels.add(new HomeVerModel(R.drawable.pizza3, "Pizza 3", "10:00-22:00", "89Rs", "4.9"));
+            homeVerModels.add(new HomeVerModel(R.drawable.pizza4, "Pizza 4", "10:00-22:00", "89Rs", "4.9"));
             updateVerticalRec.callBack(position, homeVerModels);
         }
 
@@ -55,34 +55,34 @@ public class HomeHorAdapter extends RecyclerView.Adapter<HomeHorAdapter.ViewHold
             ArrayList<HomeVerModel> homeVerModels = new ArrayList<>();
             switch (position) {
                 case 0:
-                    homeVerModels.add(new HomeVerModel(R.drawable.pizza, "Pizza 1", "10:00-22:00", "89Rs", "4.9"));
-                    homeVerModels.add(new HomeVerModel(R.drawable.pizza1, "Pizza 2", "10:00-22:00", "89Rs", "4.9"));
-                    homeVerModels.add(new HomeVerModel(R.drawable.pizza2, "Pizza 3", "10:00-22:00", "89Rs", "4.9"));
-                    homeVerModels.add(new HomeVerModel(R.drawable.pizza4, "Pizza 4", "10:00-22:00", "89Rs", "4.9"));
+                    homeVerModels.add(new HomeVerModel(R.drawable.pizza1, "Pizza 1", "10:00-22:00", "189Rs", "4.9"));
+                    homeVerModels.add(new HomeVerModel(R.drawable.pizza2, "Pizza 2", "10:00-22:00", "229Rs", "4.9"));
+                    homeVerModels.add(new HomeVerModel(R.drawable.pizza3, "Pizza 3", "10:00-22:00", "169Rs", "4.9"));
+                    homeVerModels.add(new HomeVerModel(R.drawable.pizza4, "Pizza 4", "10:00-22:00", "99Rs", "4.9"));
                     break;
                 case 1:
-                    homeVerModels.add(new HomeVerModel(R.drawable.burger1, "Burger 1", "10:00-22:00", "89Rs", "4.9"));
-                    homeVerModels.add(new HomeVerModel(R.drawable.burger2, "Burger 2", "10:00-22:00", "89Rs", "4.9"));
+                    homeVerModels.add(new HomeVerModel(R.drawable.burger1, "Burger 1", "10:00-22:00", "129Rs", "4.9"));
+                    homeVerModels.add(new HomeVerModel(R.drawable.burger2, "Burger 2", "10:00-22:00", "149Rs", "4.9"));
                     homeVerModels.add(new HomeVerModel(R.drawable.burger3, "Burger 3", "10:00-22:00", "89Rs", "4.9"));
-                    homeVerModels.add(new HomeVerModel(R.drawable.burger, "Burger 4", "10:00-22:00", "89Rs", "4.9"));
+                    homeVerModels.add(new HomeVerModel(R.drawable.burger4, "Burger 4", "10:00-22:00", "59Rs", "4.9"));
                     break;
                 case 2:
-                    homeVerModels.add(new HomeVerModel(R.drawable.fries, "Fries 1", "10:00-22:00", "89Rs", "4.9"));
-                    homeVerModels.add(new HomeVerModel(R.drawable.fries, "Fries 2", "10:00-22:00", "89Rs", "4.9"));
-                    homeVerModels.add(new HomeVerModel(R.drawable.fries, "Fries 3", "10:00-22:00", "89Rs", "4.9"));
-                    homeVerModels.add(new HomeVerModel(R.drawable.fries, "Fries 4", "10:00-22:00", "89Rs", "4.9"));
+                    homeVerModels.add(new HomeVerModel(R.drawable.fries1, "Fries 1", "10:00-22:00", "99Rs", "4.9"));
+                    homeVerModels.add(new HomeVerModel(R.drawable.fries2, "Fries 2", "10:00-22:00", "79Rs", "4.9"));
+                    homeVerModels.add(new HomeVerModel(R.drawable.fries3, "Fries 3", "10:00-22:00", "69Rs", "4.9"));
+                    homeVerModels.add(new HomeVerModel(R.drawable.fries4, "Fries 4", "10:00-22:00", "59Rs", "4.9"));
                     break;
                 case 3:
-                    homeVerModels.add(new HomeVerModel(R.drawable.icecream1, "Ice Cream 1", "10:00-22:00", "89Rs", "4.9"));
-                    homeVerModels.add(new HomeVerModel(R.drawable.icecream2, "Ice Cream 2", "10:00-22:00", "89Rs", "4.9"));
+                    homeVerModels.add(new HomeVerModel(R.drawable.icecream1, "Ice Cream 1", "10:00-22:00", "129Rs", "4.9"));
+                    homeVerModels.add(new HomeVerModel(R.drawable.icecream2, "Ice Cream 2", "10:00-22:00", "99Rs", "4.9"));
                     homeVerModels.add(new HomeVerModel(R.drawable.icecream3, "Ice Cream 3", "10:00-22:00", "89Rs", "4.9"));
-                    homeVerModels.add(new HomeVerModel(R.drawable.icecream1, "Ice Cream 4", "10:00-22:00", "89Rs", "4.9"));
+                    homeVerModels.add(new HomeVerModel(R.drawable.icecream1, "Ice Cream 4", "10:00-22:00", "79Rs", "4.9"));
                     break;
                 case 4:
-                    homeVerModels.add(new HomeVerModel(R.drawable.sandwich, "Sandwich 1", "10:00-22:00", "89Rs", "4.9"));
-                    homeVerModels.add(new HomeVerModel(R.drawable.sandwich, "Sandwich 2", "10:00-22:00", "89Rs", "4.9"));
-                    homeVerModels.add(new HomeVerModel(R.drawable.sandwich, "Sandwich 3", "10:00-22:00", "89Rs", "4.9"));
-                    homeVerModels.add(new HomeVerModel(R.drawable.sandwich, "Sandwich 4", "10:00-22:00", "89Rs", "4.9"));
+                    homeVerModels.add(new HomeVerModel(R.drawable.sandwich1, "Sandwich 1", "10:00-22:00", "199Rs", "4.9"));
+                    homeVerModels.add(new HomeVerModel(R.drawable.sandwich2, "Sandwich 2", "10:00-22:00", "169Rs", "4.9"));
+                    homeVerModels.add(new HomeVerModel(R.drawable.sandwich3, "Sandwich 3", "10:00-22:00", "149Rs", "4.9"));
+                    homeVerModels.add(new HomeVerModel(R.drawable.sandwich4, "Sandwich 4", "10:00-22:00", "99Rs", "4.9"));
                     break;
             }
 

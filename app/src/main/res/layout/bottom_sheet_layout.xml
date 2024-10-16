@@ -113,10 +113,11 @@
                     android:id="@+id/imageView4"
                     android:layout_width="15dp"
                     android:layout_height="15dp"
-                    android:src="@drawable/rupee"
+                    android:src="@drawable/rupee_icon"
                     app:layout_constraintBottom_toBottomOf="@id/bottom_price"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@id/bottom_price"
+                    android:backgroundTint="@color/gray"
                      />
 
                 <TextView

@@ -5,55 +5,38 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment"
-    android:background="@color/mediumgray">
+    android:background="@color/white">
     
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-
-        <EditText
-            android:id="@+id/search_bar"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="6dp"
-            android:layout_marginTop="4dp"
-            android:background="@drawable/search_bg"
-            android:drawableRight="@drawable/baseline_search_24"
-            android:drawablePadding="9dp"
-            android:hint="Search Your Food"
-            android:padding="10dp"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
-            android:textSize="13sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.36"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="MissingConstraints" />
 
         <TextView
             android:id="@+id/tv1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="6dp"
+            android:layout_marginLeft="10dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:fontFamily="@font/amarante"
             android:text="Hello Foodie "
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="35sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/search_bar"
+            app:layout_constraintTop_toTopOf="parent"
             tools:ignore="MissingConstraints" />
 
         <TextView
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
             android:fontFamily="@font/amarante"
             android:text="What do you want?"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             app:layout_constraintTop_toBottomOf="@+id/tv1"
             tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteX="6dp" />
