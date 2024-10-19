@@ -7,15 +7,13 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     tools:openDrawer="start">
-<!--    <FrameLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:id="@+id/fragment_container" />-->
+
     <include
         android:id="@+id/app_bar_home_page"
         layout="@layout/app_bar_home_page"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
@@ -29,6 +27,8 @@
         app:itemIconTint="@color/colorPrimaryDark"
         app:itemBackground="@drawable/nav_item_background"
         android:background="@color/background_light">
+
+
 
         <Button
             android:id="@+id/logout"

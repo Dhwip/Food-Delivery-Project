@@ -51,7 +51,7 @@ public class HomeFragment extends Fragment implements UpdateVerticalRec, AddToCa
         homeHorizontalRec.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false));
 
         homeVerModelList = new ArrayList<>();
-        homeVerAdapter = new HomeVerAdapter(getActivity(), homeVerModelList,this);//some changes to be done
+        homeVerAdapter = new HomeVerAdapter(getActivity(), homeVerModelList, this, getChildFragmentManager());
         homeVerticalRec.setAdapter(homeVerAdapter);
         homeVerticalRec.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false));
 

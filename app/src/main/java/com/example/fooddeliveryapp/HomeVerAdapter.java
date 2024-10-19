@@ -24,11 +24,15 @@ public class HomeVerAdapter extends RecyclerView.Adapter<HomeVerAdapter.ViewHold
     ArrayList<HomeVerModel> list;
     AddToCartListener addToCartListener;
 
-    public HomeVerAdapter(Context context, ArrayList<HomeVerModel> list,AddToCartListener addToCartListener) {
+    FragmentManager fragmentManager;
+
+    public HomeVerAdapter(Context context, ArrayList<HomeVerModel> list, AddToCartListener addToCartListener, FragmentManager fragmentManager) {
         this.context = context;
         this.list = list;
         this.addToCartListener = addToCartListener;
+        this.fragmentManager = fragmentManager;
     }
+
 
     @NonNull
     @Override
@@ -64,9 +68,10 @@ public class HomeVerAdapter extends RecyclerView.Adapter<HomeVerAdapter.ViewHold
                         CartManager.getInstance().addItem(cartItem);
                         addToCartListener.onAddToCart(currentItem);
                         Snackbar snackbar = Snackbar.make(holder.itemView, "Added to Cart", Snackbar.LENGTH_LONG);
-                        snackbar.setAction("Open Cart", new View.OnClickListener() {
+                        snackbar.setAction("View Cart", new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
+
                             }
                         });
                         snackbar.show();
