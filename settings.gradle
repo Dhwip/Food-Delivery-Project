@@ -19,5 +19,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Food Delivery App"
+rootProject.name = "sharedpref"
 include ':app'
